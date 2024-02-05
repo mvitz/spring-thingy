@@ -1,17 +1,15 @@
 package de.mvitz.spring.thingy;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
-public class ThingyTest {
+class ThingyTest {
 
     @Test
-    public void shouldDetectThingies() throws Exception {
+    void shouldDetectThingies() {
         try (AnnotationConfigApplicationContext ctx =
                      new AnnotationConfigApplicationContext(ThingyTest.class.getPackage().getName())) {
             final Thing bean = ctx.getBean(Thing.class);
@@ -20,7 +18,7 @@ public class ThingyTest {
     }
 
     @Test
-    public void shouldUseValueAsName() throws Exception {
+    void shouldUseValueAsName() {
         try (AnnotationConfigApplicationContext ctx =
                      new AnnotationConfigApplicationContext(ThingyTest.class.getPackage().getName())) {
             final Thing bean = (Thing) ctx.getBean("MyThingIsThis");
